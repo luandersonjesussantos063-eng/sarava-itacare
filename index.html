@@ -1,2756 +1,765 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#17100b">
-
 <title>SARAVÁ | Itacaré - BA</title>
-
-<meta
-name="description"
-content="Protótipo conceitual de experiência digital para o restaurante SARAVÁ, em Itacaré - BA."
->
+<meta name="description" content="Protótipo conceitual de experiência digital para o restaurante SARAVÁ, em Itacaré - BA.">
 
 <style>
-
-/* =========================
-   CONFIGURAÇÕES GERAIS
-========================= */
-
 :root{
-
---preto:#120d09;
---marrom:#21150e;
---marrom2:#352217;
-
---laranja:#e66527;
---laranja2:#ff8b49;
-
---creme:#f5e5c9;
---creme2:#fff7e9;
-
---texto:#ffffff;
---muted:#c7b6a0;
-
---radius:22px;
-
-}
-
-*{
-box-sizing:border-box;
-margin:0;
-padding:0;
-}
-
-html{
-scroll-behavior:smooth;
-}
-
-body{
-
-font-family:Arial, Helvetica, sans-serif;
-
-background:var(--preto);
-
-color:white;
-
-line-height:1.6;
-
-overflow-x:hidden;
-
-}
-
-img{
-
-width:100%;
-
-display:block;
-
-object-fit:cover;
-
-}
-
-a{
-
-text-decoration:none;
-
-color:inherit;
-
-}
-
-button{
-
-font:inherit;
-
-}
-
-
-/* =========================
-   CONTAINER
-========================= */
-
-.container{
-
-width:min(1120px,92%);
-
-margin:auto;
-
-}
-
-
-/* =========================
-   AVISO PROTÓTIPO
-========================= */
-
-.demo-bar{
-
-padding:9px 15px;
-
-text-align:center;
-
-background:#080604;
-
-color:#cdbba4;
-
-font-size:.78rem;
-
-border-bottom:1px solid rgba(255,255,255,.08);
-
-}
-
-.demo-bar strong{
-
-color:#ff9656;
-
-}
-
-
-/* =========================
-   MENU
-========================= */
-
-header{
-
-position:sticky;
-
-top:0;
-
-z-index:100;
-
-background:rgba(18,12,8,.90);
-
-backdrop-filter:blur(15px);
-
-border-bottom:1px solid rgba(255,255,255,.08);
-
-}
-
-.nav{
-
-min-height:74px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:space-between;
-
-gap:20px;
-
-}
-
-.logo{
-
-font-family:Georgia, serif;
-
-font-style:italic;
-
-font-weight:900;
-
-font-size:2rem;
-
-}
-
-.logo small{
-
-display:block;
-
-font-family:Arial;
-
-font-style:normal;
-
-font-size:.52rem;
-
-letter-spacing:.28em;
-
-color:#e8cba6;
-
-margin-top:-5px;
-
-}
-
-.nav-links{
-
-display:flex;
-
-align-items:center;
-
-gap:25px;
-
-font-size:.82rem;
-
-text-transform:uppercase;
-
-letter-spacing:.08em;
-
-}
-
-.nav-links a{
-
-color:#e9dccb;
-
-transition:.2s;
-
-}
-
-.nav-links a:hover{
-
-color:#ff9251;
-
-}
-
-.menu-btn{
-
-display:none;
-
-font-size:1.7rem;
-
-background:none;
-
-border:0;
-
-color:white;
-
-cursor:pointer;
-
-}
-
-
-/* =========================
-   BOTÕES
-========================= */
-
-.btn{
-
-display:inline-flex;
-
-align-items:center;
-
-justify-content:center;
-
-gap:8px;
-
-min-height:48px;
-
-padding:0 21px;
-
-border-radius:999px;
-
-font-weight:800;
-
-border:1px solid rgba(255,255,255,.25);
-
-cursor:pointer;
-
-transition:.25s;
-
-}
-
-.btn:hover{
-
-transform:translateY(-2px);
-
-}
-
-.btn-primary{
-
-border:none;
-
-background:
-
-linear-gradient(
-135deg,
-var(--laranja),
-var(--laranja2)
-);
-
-color:#1d1008;
-
-box-shadow:
-
-0 12px 32px
-rgba(230,101,39,.28);
-
-}
-
-.btn-outline{
-
-background:rgba(0,0,0,.32);
-
-color:white;
-
-}
-
-
-/* =========================
-   HERO
-========================= */
-
-.hero{
-
-min-height:78vh;
-
-display:flex;
-
-align-items:center;
-
-position:relative;
-
-background:
-
-linear-gradient(
-90deg,
-rgba(7,5,3,.95) 0%,
-rgba(7,5,3,.78) 38%,
-rgba(7,5,3,.30) 72%,
-rgba(7,5,3,.48)
-),
-
-url("sarava.webp")
-center / cover no-repeat;
-
-}
-
-.hero::after{
-
-content:"";
-
-position:absolute;
-
-bottom:0;
-
-left:0;
-
-right:0;
-
-height:110px;
-
-background:
-
-linear-gradient(
-transparent,
-#17100b
-);
-
-}
-
-.hero-content{
-
-position:relative;
-
-z-index:2;
-
-padding:
-
-90px 0
-120px;
-
-max-width:650px;
-
-}
-
-.kicker{
-
-color:#ffab72;
-
-font-weight:900;
-
-font-size:.76rem;
-
-letter-spacing:.19em;
-
-text-transform:uppercase;
-
-margin-bottom:17px;
-
-}
-
-.hero h1{
-
-font-family:Georgia, serif;
-
-font-style:italic;
-
-font-size:
-
-clamp(
-3.5rem,
-9vw,
-7rem
-);
-
-line-height:.88;
-
-margin-bottom:22px;
-
-text-shadow:
-
-0 10px 35px
-rgba(0,0,0,.55);
-
-}
-
-.hero p{
-
-max-width:540px;
-
-font-size:
-
-clamp(
-1rem,
-2vw,
-1.18rem
-);
-
-color:#eadac5;
-
-margin-bottom:30px;
-
-}
-
-.hero-actions{
-
-display:flex;
-
-gap:12px;
-
-flex-wrap:wrap;
-
-}
-
-
-/* =========================
-   BENEFÍCIOS
-========================= */
-
-.benefits{
-
-background:#17100b;
-
-border-top:
-1px solid
-rgba(255,255,255,.06);
-
-border-bottom:
-1px solid
-rgba(255,255,255,.06);
-
-}
-
-.benefits-grid{
-
-display:grid;
-
-grid-template-columns:
-repeat(4,1fr);
-
-}
-
-.benefit{
-
-text-align:center;
-
-padding:27px 15px;
-
-border-right:
-1px solid
-rgba(255,255,255,.06);
-
-}
-
-.benefit:last-child{
-
-border-right:0;
-
-}
-
-.benefit strong{
-
-display:block;
-
-margin-bottom:5px;
-
-}
-
-.benefit span{
-
-color:#bba990;
-
-font-size:.83rem;
-
-}
-
-
-/* =========================
-   SEÇÕES
-========================= */
-
-section{
-
-padding:90px 0;
-
-}
-
-.paper{
-
-color:#23170f;
-
-background:
-
-radial-gradient(
-circle at 20% 10%,
-rgba(120,75,32,.07),
-transparent 24%
-),
-
-linear-gradient(
-180deg,
-var(--creme2),
-var(--creme)
-);
-
-}
-
-.section-head{
-
-display:flex;
-
-align-items:end;
-
-justify-content:
-space-between;
-
-gap:30px;
-
-margin-bottom:38px;
-
-}
-
-.section-tag{
-
-color:#bd5724;
-
-font-weight:900;
-
-font-size:.72rem;
-
-letter-spacing:.18em;
-
-text-transform:uppercase;
-
-}
-
-.section-head h2{
-
-font-family:Georgia, serif;
-
-font-style:italic;
-
-font-size:
-
-clamp(
-2.5rem,
-6vw,
-4.2rem
-);
-
-line-height:1;
-
-margin:
-
-8px 0
-12px;
-
-}
-
-.section-head p{
-
-color:#715b48;
-
-max-width:650px;
-
-}
-
-
-/* =========================
-   CARDÁPIO
-========================= */
-
-.menu-grid{
-
-display:grid;
-
-grid-template-columns:
-repeat(4,1fr);
-
-gap:18px;
-
-}
-
-.food-card{
-
-overflow:hidden;
-
-border-radius:20px;
-
-background:#fff9ef;
-
-border:
-1px solid
-rgba(80,45,20,.10);
-
-box-shadow:
-
-0 15px 35px
-rgba(60,30,10,.09);
-
-transition:.25s;
-
-}
-
-.food-card:hover{
-
-transform:
-translateY(-6px);
-
-}
-
-.food-card img{
-
-height:210px;
-
-}
-
-.food-content{
-
-padding:18px;
-
-}
-
-.food-content small{
-
-font-size:.68rem;
-
-font-weight:900;
-
-letter-spacing:.12em;
-
-text-transform:uppercase;
-
-color:#c75e29;
-
-}
-
-.food-content h3{
-
-font-family:Georgia, serif;
-
-font-size:1.25rem;
-
-margin:
-
-6px 0
-7px;
-
-}
-
-.food-content p{
-
-color:#715c4b;
-
-font-size:.88rem;
-
-}
-
-
-/* =========================
-   HISTÓRIA
-========================= */
-
-.story{
-
-background:
-
-linear-gradient(
-90deg,
-rgba(8,5,3,.96),
-rgba(8,5,3,.80),
-rgba(8,5,3,.38)
-),
-
-url("sarava2.webp")
-center / cover;
-
-}
-
-.story-box{
-
-max-width:590px;
-
-padding:35px;
-
-border-radius:26px;
-
-background:
-
-rgba(
-39,
-24,
-15,
-.78
-);
-
-border:
-
-1px solid
-rgba(255,255,255,.14);
-
-backdrop-filter:
-blur(8px);
-
-box-shadow:
-
-0 24px 60px
-rgba(0,0,0,.35);
-
-}
-
-.story-box h2{
-
-font-family:Georgia, serif;
-
-font-style:italic;
-
-font-size:
-
-clamp(
-2.5rem,
-6vw,
-4.2rem
-);
-
-line-height:1;
-
-margin:
-
-10px 0
-20px;
-
-}
-
-.story-box p{
-
-color:#ead8c0;
-
-margin-bottom:16px;
-
-}
-
-
-/* =========================
-   GALERIA
-========================= */
-
-.gallery-title{
-
-text-align:center;
-
-margin-bottom:35px;
-
-}
-
-.gallery-title h2{
-
-font-family:Georgia, serif;
-
-font-style:italic;
-
-font-size:
-
-clamp(
-2.5rem,
-6vw,
-4rem
-);
-
-margin:
-
-8px 0
-10px;
-
-}
-
-.gallery-title p{
-
-color:#715c49;
-
-}
-
-.gallery{
-
-display:grid;
-
-grid-template-columns:
-1.25fr .75fr .75fr;
-
-grid-auto-rows:220px;
-
-gap:12px;
-
-}
-
-.gallery img{
-
-height:100%;
-
-border-radius:18px;
-
-box-shadow:
-
-0 12px 30px
-rgba(60,30,10,.13);
-
-transition:.25s;
-
-}
-
-.gallery img:hover{
-
-transform:
-scale(1.015);
-
-}
-
-.gallery .main-photo{
-
-grid-row:
-span 2;
-
-}
-
-
-/* =========================
-   LOCALIZAÇÃO
-========================= */
-
-.location-grid{
-
-display:grid;
-
-grid-template-columns:
-1fr 1fr;
-
-gap:26px;
-
-}
-
-.info-card{
-
-padding:30px;
-
-border-radius:24px;
-
-background:#21160f;
-
-box-shadow:
-
-0 20px 50px
-rgba(0,0,0,.20);
-
-}
-
-.info-card h2{
-
-font-family:Georgia, serif;
-
-font-size:2rem;
-
-margin-bottom:20px;
-
-}
-
-.info-item{
-
-margin-bottom:17px;
-
-color:#ddcbb4;
-
-}
-
-.info-item strong{
-
-display:block;
-
-color:white;
-
-}
-
-.location-photo{
-
-position:relative;
-
-min-height:390px;
-
-border-radius:24px;
-
-overflow:hidden;
-
-background:
-
-url("sarava.webp")
-center / cover;
-
-box-shadow:
-
-0 20px 50px
-rgba(0,0,0,.20);
-
-}
-
-.location-photo::after{
-
-content:"";
-
-position:absolute;
-
-inset:0;
-
-background:
-
-linear-gradient(
-transparent 50%,
-rgba(0,0,0,.78)
-);
-
-}
-
-.location-caption{
-
-position:absolute;
-
-z-index:2;
-
-bottom:24px;
-
-left:24px;
-
-right:24px;
-
-color:white;
-
-}
-
-.location-caption strong{
-
-font-size:1.3rem;
-
-display:block;
-
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-
-padding:35px 0;
-
-background:#0f0a07;
-
-border-top:
-1px solid
-rgba(255,255,255,.08);
-
-color:#bba88f;
-
-}
-
-.footer{
-
-display:flex;
-
-align-items:center;
-
-justify-content:
-space-between;
-
-gap:25px;
-
-flex-wrap:wrap;
-
-}
-
-.footer-logo{
-
-font-family:Georgia, serif;
-
-font-style:italic;
-
-font-size:1.8rem;
-
-color:white;
-
-font-weight:900;
-
-}
-
-.footer small{
-
-display:block;
-
-}
-
-
-/* =========================
-   WHATSAPP
-========================= */
-
-.whatsapp{
-
-position:fixed;
-
-right:18px;
-
-bottom:18px;
-
-z-index:110;
-
-padding:
-
-14px 18px;
-
-border:0;
-
-border-radius:999px;
-
-background:#25d366;
-
-color:#08240f;
-
-font-weight:900;
-
-box-shadow:
-
-0 15px 35px
-rgba(0,0,0,.35);
-
-cursor:pointer;
-
-}
-
-
-/* =========================
-   MODAL CARDÁPIO
-========================= */
-
-.modal{
-
-position:fixed;
-
-inset:0;
-
-z-index:300;
-
-display:none;
-
-place-items:center;
-
-padding:20px;
-
-background:
-rgba(0,0,0,.76);
-
-backdrop-filter:
-blur(7px);
-
-}
-
-.modal.open{
-
-display:grid;
-
-}
-
-.modal-box{
-
-width:min(760px,100%);
-
-max-height:88vh;
-
-overflow-y:auto;
-
-border-radius:25px;
-
-background:#fff5e4;
-
-color:#25170e;
-
-box-shadow:
-
-0 30px 100px
-rgba(0,0,0,.55);
-
-}
-
-.modal-header{
-
-position:sticky;
-
-top:0;
-
-display:flex;
-
-align-items:center;
-
-justify-content:
-space-between;
-
-padding:
-
-22px 25px;
-
-background:#fff5e4;
-
-border-bottom:
-
-1px solid
-rgba(80,40,10,.12);
-
-}
-
-.modal-header h2{
-
-font-family:Georgia, serif;
-
-}
-
-.close{
-
-width:40px;
-
-height:40px;
-
-border-radius:50%;
-
-border:0;
-
-background:#26170e;
-
-color:white;
-
-cursor:pointer;
-
-}
-
-.menu-modal-content{
-
-padding:10px 25px 28px;
-
-}
-
-.menu-category{
-
-padding:22px 0;
-
-border-bottom:
-
-1px dashed
-rgba(80,40,10,.25);
-
-}
-
-.menu-category h3{
-
-font-size:.78rem;
-
-text-transform:uppercase;
-
-letter-spacing:.14em;
-
-color:#c55c27;
-
-margin-bottom:8px;
-
-}
-
-.menu-item{
-
-display:flex;
-
-justify-content:
-space-between;
-
-gap:20px;
-
-padding:10px 0;
-
-}
-
-.menu-item p{
-
-color:#6c5847;
-
-font-size:.88rem;
-
-}
-
-.menu-item strong{
-
-white-space:nowrap;
-
-}
-
-.prototype-warning{
-
-margin:
-
-0 25px
-25px;
-
-padding:14px;
-
-border-radius:14px;
-
-background:#f0d3b2;
-
-font-size:.82rem;
-
-color:#67472d;
-
-}
-
-
-/* =========================
-   TOAST
-========================= */
-
-.toast{
-
-position:fixed;
-
-z-index:500;
-
-left:50%;
-
-bottom:25px;
-
-transform:
-translate(-50%,30px);
-
-opacity:0;
-
-pointer-events:none;
-
-background:white;
-
-color:#21140c;
-
-padding:
-
-14px 20px;
-
-border-radius:15px;
-
-font-weight:700;
-
-box-shadow:
-
-0 20px 50px
-rgba(0,0,0,.4);
-
-transition:.25s;
-
-text-align:center;
-
-width:min(500px,90%);
-
-}
-
-.toast.show{
-
-opacity:1;
-
-transform:
-translate(-50%,0);
-
-}
-
-
-/* =========================
-   RESPONSIVO
-========================= */
+  --preto:#120d09;
+  --marrom:#21150e;
+  --marrom2:#352217;
+  --laranja:#e66527;
+  --laranja2:#ff8b49;
+  --creme:#f5e5c9;
+  --creme2:#fff7e9;
+  --texto:#ffffff;
+  --muted:#c7b6a0;
+  --radius:22px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--preto);color:#fff;line-height:1.6;overflow-x:hidden}
+img{width:100%;display:block;object-fit:cover}
+a{text-decoration:none;color:inherit}
+button{font:inherit}
+.container{width:min(1120px,92%);margin:auto}
+
+.demo-bar{padding:9px 15px;text-align:center;background:#080604;color:#cdbba4;font-size:.78rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.demo-bar strong{color:#ff9656}
+
+header{position:sticky;top:0;z-index:100;background:rgba(18,12,8,.90);backdrop-filter:blur(15px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-family:Georgia,serif;font-style:italic;font-weight:900;font-size:2rem}
+.logo small{display:block;font-family:Arial;font-style:normal;font-size:.52rem;letter-spacing:.28em;color:#e8cba6;margin-top:-5px}
+.nav-links{display:flex;align-items:center;gap:22px;font-size:.82rem;text-transform:uppercase;letter-spacing:.08em}
+.nav-links a{color:#e9dccb;transition:.2s}
+.nav-links a:hover{color:#ff9251}
+.nav-tools{display:flex;align-items:center;gap:10px}
+.lang-toggle{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05);color:#fff;border-radius:999px;padding:8px 12px;font-weight:800;cursor:pointer}
+.lang-toggle span{opacity:.45}
+.lang-toggle .active{opacity:1;color:#ffab72}
+.menu-btn{display:none;font-size:1.7rem;background:none;border:0;color:#fff;cursor:pointer}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 21px;border-radius:999px;font-weight:800;border:1px solid rgba(255,255,255,.25);cursor:pointer;transition:.25s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{border:none;background:linear-gradient(135deg,var(--laranja),var(--laranja2));color:#1d1008;box-shadow:0 12px 32px rgba(230,101,39,.28)}
+.btn-outline{background:rgba(0,0,0,.32);color:#fff}
+
+.hero{min-height:78vh;display:flex;align-items:center;position:relative;background:linear-gradient(90deg,rgba(7,5,3,.95) 0%,rgba(7,5,3,.78) 38%,rgba(7,5,3,.30) 72%,rgba(7,5,3,.48)),url("sarava.webp") center/cover no-repeat}
+.hero::after{content:"";position:absolute;bottom:0;left:0;right:0;height:110px;background:linear-gradient(transparent,#17100b)}
+.hero-content{position:relative;z-index:2;padding:90px 0 120px;max-width:650px}
+.kicker{color:#ffab72;font-weight:900;font-size:.76rem;letter-spacing:.19em;text-transform:uppercase;margin-bottom:17px}
+.hero h1{font-family:Georgia,serif;font-style:italic;font-size:clamp(3.5rem,9vw,7rem);line-height:.88;margin-bottom:22px;text-shadow:0 10px 35px rgba(0,0,0,.55)}
+.hero p{max-width:560px;font-size:clamp(1rem,2vw,1.18rem);color:#eadac5;margin-bottom:30px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+.benefits{background:#17100b;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
+.benefits-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.benefit{text-align:center;padding:27px 15px;border-right:1px solid rgba(255,255,255,.06)}
+.benefit:last-child{border-right:0}
+.benefit strong{display:block;margin-bottom:5px}
+.benefit span{color:#bba990;font-size:.83rem}
+
+section{padding:90px 0}
+.paper{color:#23170f;background:radial-gradient(circle at 20% 10%,rgba(120,75,32,.07),transparent 24%),linear-gradient(180deg,var(--creme2),var(--creme))}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:38px}
+.section-head.center{display:block;text-align:center}
+.section-tag{color:#bd5724;font-weight:900;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase}
+.section-head h2,.gallery-title h2{font-family:Georgia,serif;font-style:italic;font-size:clamp(2.5rem,6vw,4.2rem);line-height:1;margin:8px 0 12px}
+.section-head p,.gallery-title p{color:#715b48;max-width:650px}
+
+.menu-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.food-card{overflow:hidden;border-radius:20px;background:#fff9ef;border:1px solid rgba(80,45,20,.10);box-shadow:0 15px 35px rgba(60,30,10,.09);transition:.25s}
+.food-card:hover{transform:translateY(-6px)}
+.food-card img{height:210px}
+.food-content{padding:18px}
+.food-content small{font-size:.68rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#c75e29}
+.food-content h3{font-family:Georgia,serif;font-size:1.25rem;margin:6px 0 7px}
+.food-content p{color:#715c4b;font-size:.88rem}
+
+.story{background:linear-gradient(90deg,rgba(8,5,3,.96),rgba(8,5,3,.80),rgba(8,5,3,.38)),url("sarava2.webp") center/cover}
+.story-box{max-width:590px;padding:35px;border-radius:26px;background:rgba(39,24,15,.78);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(8px);box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.story-box h2{font-family:Georgia,serif;font-style:italic;font-size:clamp(2.5rem,6vw,4.2rem);line-height:1;margin:10px 0 20px}
+.story-box p{color:#ead8c0;margin-bottom:16px}
+
+.gallery-title{text-align:center;margin-bottom:35px}
+.gallery-title p{margin:auto}
+.gallery{display:grid;grid-template-columns:1.25fr .75fr .75fr;grid-auto-rows:220px;gap:12px}
+.gallery img{height:100%;border-radius:18px;box-shadow:0 12px 30px rgba(60,30,10,.13);transition:.25s}
+.gallery img:hover{transform:scale(1.015)}
+.gallery .main-photo{grid-row:span 2}
+
+.reviews{background:#18100b}
+.review-head{text-align:center;max-width:720px;margin:0 auto 35px}
+.review-head h2{font-family:Georgia,serif;font-style:italic;font-size:clamp(2.5rem,6vw,4.1rem);line-height:1;margin:8px 0 12px}
+.review-head p{color:#c4b097}
+.rating-pill{display:inline-flex;align-items:center;gap:9px;margin-top:16px;padding:10px 15px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#f7dfb5}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.review-card{padding:25px;border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.025));border:1px solid rgba(255,255,255,.09)}
+.stars{color:#ffb24a;letter-spacing:.08em;margin-bottom:12px}
+.review-card h3{font-size:1.05rem;margin-bottom:8px}
+.review-card p{color:#cfbea8;font-size:.92rem}
+.review-card small{display:block;margin-top:14px;color:#8f7c69}
+
+.instagram-block{display:grid;grid-template-columns:1fr .9fr;gap:26px;align-items:center}
+.instagram-copy h2{font-family:Georgia,serif;font-style:italic;font-size:clamp(2.5rem,6vw,4rem);line-height:1;margin:8px 0 16px}
+.instagram-copy p{color:#6e5948;margin-bottom:20px}
+.instagram-phone{border-radius:28px;background:#18110c;padding:14px;box-shadow:0 20px 50px rgba(60,30,10,.18);transform:rotate(1deg)}
+.instagram-phone img{height:430px;border-radius:20px}
+
+.qr-section{background:#21160f}
+.qr-grid{display:grid;grid-template-columns:1fr auto;align-items:center;gap:35px}
+.qr-copy h2{font-family:Georgia,serif;font-style:italic;font-size:clamp(2.4rem,6vw,4rem);line-height:1;margin:8px 0 15px}
+.qr-copy p{color:#d8c3a8;max-width:620px}
+.qr-card{width:210px;padding:16px;border-radius:24px;background:#fff;color:#21160f;text-align:center;box-shadow:0 18px 45px rgba(0,0,0,.28)}
+.qr-card img{width:178px;height:178px;object-fit:contain;margin:auto}
+.qr-card strong{display:block;margin-top:8px}
+.qr-card small{color:#6d5846}
+
+.final-line{padding:65px 0;background:linear-gradient(135deg,#2b1a10,#120c08);text-align:center}
+.final-line p{width:min(900px,92%);margin:auto;font-family:Georgia,serif;font-style:italic;font-size:clamp(1.7rem,4vw,3rem);line-height:1.2;color:#f6e1c2}
+.final-line strong{color:#ff9251}
+
+.location-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.info-card{padding:30px;border-radius:24px;background:#21160f;box-shadow:0 20px 50px rgba(0,0,0,.20)}
+.info-card h2{font-family:Georgia,serif;font-size:2rem;margin-bottom:20px}
+.info-item{margin-bottom:17px;color:#ddcbb4}
+.info-item strong{display:block;color:#fff}
+.location-photo{position:relative;min-height:390px;border-radius:24px;overflow:hidden;background:url("sarava.webp") center/cover;box-shadow:0 20px 50px rgba(0,0,0,.20)}
+.location-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(0,0,0,.78))}
+.location-caption{position:absolute;z-index:2;bottom:24px;left:24px;right:24px;color:#fff}
+.location-caption strong{font-size:1.3rem;display:block}
+
+footer{padding:35px 0;background:#0f0a07;border-top:1px solid rgba(255,255,255,.08);color:#bba88f}
+.footer{display:flex;align-items:center;justify-content:space-between;gap:25px;flex-wrap:wrap}
+.footer-logo{font-family:Georgia,serif;font-style:italic;font-size:1.8rem;color:#fff;font-weight:900}
+.footer small{display:block}
+.social-links{display:flex;gap:10px;flex-wrap:wrap}
+.social-link{padding:9px 13px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);font-size:.82rem}
+
+.whatsapp{position:fixed;right:18px;bottom:18px;z-index:110;padding:14px 18px;border:0;border-radius:999px;background:#25d366;color:#08240f;font-weight:900;box-shadow:0 15px 35px rgba(0,0,0,.35);cursor:pointer}
+
+.modal{position:fixed;inset:0;z-index:300;display:none;place-items:center;padding:20px;background:rgba(0,0,0,.76);backdrop-filter:blur(7px)}
+.modal.open{display:grid}
+.modal-box{width:min(780px,100%);max-height:88vh;overflow-y:auto;border-radius:25px;background:#fff5e4;color:#25170e;box-shadow:0 30px 100px rgba(0,0,0,.55)}
+.modal-header{position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;padding:22px 25px;background:#fff5e4;border-bottom:1px solid rgba(80,40,10,.12);z-index:2}
+.modal-header h2{font-family:Georgia,serif}
+.close{width:40px;height:40px;border-radius:50%;border:0;background:#26170e;color:#fff;cursor:pointer}
+.menu-tabs{display:flex;gap:8px;overflow:auto;padding:16px 25px 4px}
+.menu-tab{white-space:nowrap;border:1px solid rgba(80,40,10,.16);background:#f5dec4;color:#5b3922;border-radius:999px;padding:9px 13px;font-weight:800;cursor:pointer}
+.menu-tab.active{background:#c55c27;color:#fff;border-color:#c55c27}
+.menu-modal-content{padding:8px 25px 28px}
+.menu-category{display:none;padding:18px 0}
+.menu-category.active{display:block}
+.menu-category h3{font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;color:#c55c27;margin-bottom:8px}
+.menu-item{display:flex;justify-content:space-between;gap:20px;padding:12px 0;border-bottom:1px dashed rgba(80,40,10,.18)}
+.menu-item:last-child{border-bottom:0}
+.menu-item p{color:#6c5847;font-size:.88rem}
+.menu-item > strong{white-space:nowrap}
+.prototype-warning{margin:0 25px 25px;padding:14px;border-radius:14px;background:#f0d3b2;font-size:.82rem;color:#67472d}
+
+.toast{position:fixed;z-index:500;left:50%;bottom:25px;transform:translate(-50%,30px);opacity:0;pointer-events:none;background:#fff;color:#21140c;padding:14px 20px;border-radius:15px;font-weight:700;box-shadow:0 20px 50px rgba(0,0,0,.4);transition:.25s;text-align:center;width:min(500px,90%)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
 
 @media(max-width:900px){
-
-.nav-links{
-
-display:none;
-
-position:absolute;
-
-top:74px;
-
-left:4%;
-
-right:4%;
-
-flex-direction:column;
-
-align-items:flex-start;
-
-background:#21150e;
-
-padding:22px;
-
-border-radius:20px;
-
-box-shadow:
-0 20px 50px
-rgba(0,0,0,.4);
-
+  .nav-links{display:none;position:absolute;top:74px;left:4%;right:4%;flex-direction:column;align-items:flex-start;background:#21150e;padding:22px;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.4)}
+  .nav-links.open{display:flex}
+  .menu-btn{display:block}
+  .desktop-button{display:none}
+  .benefits-grid{grid-template-columns:repeat(2,1fr)}
+  .menu-grid{grid-template-columns:repeat(2,1fr)}
+  .gallery{grid-template-columns:1fr 1fr}
+  .gallery .main-photo{grid-row:auto;grid-column:span 2}
+  .review-grid{grid-template-columns:1fr}
+  .instagram-block{grid-template-columns:1fr}
+  .location-grid{grid-template-columns:1fr}
+  .qr-grid{grid-template-columns:1fr;text-align:center}
+  .qr-copy p{margin:auto}
+  .qr-card{margin:auto}
 }
-
-.nav-links.open{
-
-display:flex;
-
-}
-
-.menu-btn{
-
-display:block;
-
-}
-
-.desktop-button{
-
-display:none;
-
-}
-
-.benefits-grid{
-
-grid-template-columns:
-repeat(2,1fr);
-
-}
-
-.menu-grid{
-
-grid-template-columns:
-repeat(2,1fr);
-
-}
-
-.gallery{
-
-grid-template-columns:
-1fr 1fr;
-
-}
-
-.gallery .main-photo{
-
-grid-row:auto;
-
-grid-column:
-span 2;
-
-}
-
-.location-grid{
-
-grid-template-columns:1fr;
-
-}
-
-}
-
 
 @media(max-width:560px){
-
-.hero{
-
-min-height:72vh;
-
-background-position:
-center;
-
+  .hero{min-height:72vh;background-position:center}
+  .hero-content{padding:70px 0 100px}
+  .benefits-grid{grid-template-columns:1fr 1fr}
+  .benefit{padding:20px 10px;font-size:.84rem}
+  section{padding:65px 0}
+  .section-head{display:block}
+  .section-head .btn{margin-top:20px}
+  .menu-grid{grid-template-columns:1fr}
+  .food-card img{height:250px}
+  .gallery{grid-template-columns:1fr 1fr;grid-auto-rows:165px}
+  .gallery .main-photo{grid-column:span 2}
+  .story-box{padding:25px}
+  .instagram-phone img{height:360px}
+  .whatsapp{right:12px;bottom:12px;font-size:.84rem;padding:12px 14px}
+  .nav-tools{gap:5px}
+  .lang-toggle{padding:7px 9px;font-size:.78rem}
 }
-
-.hero-content{
-
-padding:
-
-70px 0
-100px;
-
-}
-
-.benefits-grid{
-
-grid-template-columns:
-1fr 1fr;
-
-}
-
-.benefit{
-
-padding:
-20px 10px;
-
-font-size:.84rem;
-
-}
-
-section{
-
-padding:65px 0;
-
-}
-
-.section-head{
-
-display:block;
-
-}
-
-.section-head .btn{
-
-margin-top:20px;
-
-}
-
-.menu-grid{
-
-grid-template-columns:1fr;
-
-}
-
-.food-card img{
-
-height:250px;
-
-}
-
-.gallery{
-
-grid-template-columns:
-1fr 1fr;
-
-grid-auto-rows:
-165px;
-
-}
-
-.gallery .main-photo{
-
-grid-column:
-span 2;
-
-}
-
-.story-box{
-
-padding:25px;
-
-}
-
-.whatsapp{
-
-right:12px;
-
-bottom:12px;
-
-font-size:.84rem;
-
-padding:
-12px 14px;
-
-}
-
-}
-
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- AVISO -->
-
 <div class="demo-bar">
-
-<strong>PROTÓTIPO NOVA BYTE</strong>
-
-•
-
-Demonstração visual não oficial criada para apresentar uma proposta ao SARAVÁ
-
+  <strong>PROTÓTIPO NOVA BYTE</strong> •
+  <span data-pt="Demonstração visual não oficial criada para apresentar uma proposta ao SARAVÁ"
+        data-en="Unofficial visual demo created to present a proposal to SARAVÁ">
+    Demonstração visual não oficial criada para apresentar uma proposta ao SARAVÁ
+  </span>
 </div>
-
-
-
-<!-- MENU -->
 
 <header>
+  <div class="container nav">
+    <a class="logo" href="#inicio">SARAVÁ<small>ITACARÉ • BA</small></a>
 
-<div class="container nav">
+    <nav class="nav-links" id="navLinks">
+      <a href="#inicio" data-pt="Início" data-en="Home">Início</a>
+      <a href="#cardapio" data-pt="Cardápio" data-en="Menu">Cardápio</a>
+      <a href="#historia" data-pt="História" data-en="Story">História</a>
+      <a href="#galeria" data-pt="Galeria" data-en="Gallery">Galeria</a>
+      <a href="#avaliacoes" data-pt="Avaliações" data-en="Reviews">Avaliações</a>
+      <a href="#localizacao" data-pt="Localização" data-en="Location">Localização</a>
+    </nav>
 
+    <div class="nav-tools">
+      <button class="lang-toggle" id="langToggle" aria-label="Trocar idioma">
+        <b class="active" id="ptLabel">PT</b> <span>|</span> <b id="enLabel">EN</b>
+      </button>
 
-<a
-class="logo"
-href="#inicio"
->
+      <a href="#cardapio" class="btn btn-primary desktop-button" data-pt="Ver cardápio" data-en="View menu">
+        Ver cardápio
+      </a>
 
-SARAVÁ
-
-<small>
-ITACARÉ • BA
-</small>
-
-</a>
-
-
-<nav
-class="nav-links"
-id="navLinks"
->
-
-<a href="#inicio">
-Início
-</a>
-
-<a href="#cardapio">
-Cardápio
-</a>
-
-<a href="#historia">
-História
-</a>
-
-<a href="#galeria">
-Galeria
-</a>
-
-<a href="#localizacao">
-Localização
-</a>
-
-</nav>
-
-
-<a
-href="#cardapio"
-class="btn btn-primary desktop-button"
->
-
-Ver cardápio
-
-</a>
-
-
-<button
-class="menu-btn"
-id="menuBtn"
-aria-label="Abrir menu"
->
-
-☰
-
-</button>
-
-
-</div>
-
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button>
+    </div>
+  </div>
 </header>
-
-
 
 <main id="inicio">
 
-
-<!-- HERO -->
-
 <section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="kicker">✦ SABORES • ARTE • ITACARÉ</div>
 
-<div class="container">
+      <h1 data-pt="Boa comida.<br>Boas histórias." data-en="Good food.<br>Good stories.">
+        Boa comida.<br>Boas histórias.
+      </h1>
 
-<div class="hero-content">
+      <p data-pt="Uma experiência digital inspirada na verdadeira atmosfera do SARAVÁ: acolhedora, autêntica e cheia de personalidade."
+         data-en="A digital experience inspired by the real atmosphere of SARAVÁ: warm, authentic and full of personality.">
+        Uma experiência digital inspirada na verdadeira atmosfera do SARAVÁ: acolhedora, autêntica e cheia de personalidade.
+      </p>
 
+      <div class="hero-actions">
+        <button class="btn btn-primary" data-menu data-pt="🍴 Ver cardápio" data-en="🍴 View menu">🍴 Ver cardápio</button>
 
-<div class="kicker">
-
-✦ SABORES • ARTE • ITACARÉ
-
-</div>
-
-
-<h1>
-
-Boa comida.<br>
-
-Boas histórias.
-
-</h1>
-
-
-<p>
-
-Uma experiência digital inspirada na verdadeira atmosfera do SARAVÁ:
-
-acolhedora, autêntica e cheia de personalidade.
-
-</p>
-
-
-<div class="hero-actions">
-
-
-<button
-class="btn btn-primary"
-data-menu
->
-
-🍴 Ver cardápio
-
-</button>
-
-
-<a
-class="btn btn-outline"
-target="_blank"
-
-href="https://www.google.com/maps/search/?api=1&query=SARAV%C3%81%20Rua%20Lod%C3%B4nio%20Almeida%2084%20Itacar%C3%A9%20BA"
->
-
-📍 Como chegar
-
-</a>
-
-
-</div>
-
-
-</div>
-
-</div>
-
+        <a class="btn btn-outline" target="_blank"
+           href="https://www.google.com/maps/search/?api=1&query=SARAV%C3%81%20Rua%20Lod%C3%B4nio%20Almeida%2084%20Itacar%C3%A9%20BA"
+           data-pt="📍 Como chegar" data-en="📍 Directions">
+          📍 Como chegar
+        </a>
+      </div>
+    </div>
+  </div>
 </section>
-
-
-
-<!-- DESTAQUES -->
 
 <div class="benefits">
+  <div class="container benefits-grid">
+    <div class="benefit">
+      <strong data-pt="🌿 Gastronomia com identidade" data-en="🌿 Food with identity">🌿 Gastronomia com identidade</strong>
+      <span data-pt="Sabores com personalidade" data-en="Flavors with personality">Sabores com personalidade</span>
+    </div>
 
-<div class="container benefits-grid">
+    <div class="benefit">
+      <strong data-pt="📸 Experiência real" data-en="📸 Real experience">📸 Experiência real</strong>
+      <span data-pt="Fotos do próprio restaurante" data-en="Photos from the restaurant">Fotos do próprio restaurante</span>
+    </div>
 
+    <div class="benefit">
+      <strong data-pt="✨ Ambiente acolhedor" data-en="✨ Welcoming atmosphere">✨ Ambiente acolhedor</strong>
+      <span data-pt="A essência do SARAVÁ" data-en="The essence of SARAVÁ">A essência do SARAVÁ</span>
+    </div>
 
-<div class="benefit">
-
-<strong>
-🌿 Gastronomia com identidade
-</strong>
-
-<span>
-Sabores com personalidade
-</span>
-
+    <div class="benefit">
+      <strong>⭐ 4,7 no Google</strong>
+      <span data-pt="Mais de 500 avaliações" data-en="500+ reviews">Mais de 500 avaliações</span>
+    </div>
+  </div>
 </div>
 
-
-<div class="benefit">
-
-<strong>
-📸 Experiência real
-</strong>
-
-<span>
-Fotos do próprio restaurante
-</span>
-
-</div>
-
-
-<div class="benefit">
-
-<strong>
-✨ Ambiente acolhedor
-</strong>
-
-<span>
-A essência do SARAVÁ
-</span>
-
-</div>
-
-
-<div class="benefit">
-
-<strong>
-⭐ 4,7 no Google
-</strong>
-
-<span>
-Mais de 500 avaliações
-</span>
-
-</div>
-
-
-</div>
-
-</div>
-
-
-
-<!-- CARDÁPIO -->
-
-<section
-class="paper"
-id="cardapio"
->
-
-<div class="container">
-
-
-<div class="section-head">
-
-
-<div>
-
-<div class="section-tag">
-
-NOSSOS SABORES
-
-</div>
-
-
-<h2>
-
-Um gostinho do SARAVÁ
-
-</h2>
-
-
-<p>
-
-As imagens reais ajudam o visitante a sentir a experiência antes mesmo de chegar ao restaurante.
-
-</p>
-
-</div>
-
-
-<button
-class="btn btn-primary"
-data-menu
->
-
-Ver cardápio completo
-
-</button>
-
-
-</div>
-
-
-
-<div class="menu-grid">
-
-
-
-<!-- PRATO 1 -->
-
-<article class="food-card">
-
-<img
-src="sarava1.webp"
-alt="Petisco servido no Saravá"
->
-
-<div class="food-content">
-
-<small>
-PETISCOS
-</small>
-
-<h3>
-Croqueta da Casa
-</h3>
-
-<p>
-
-Apresentação artesanal e perfeita para começar a experiência.
-
-</p>
-
-</div>
-
-</article>
-
-
-
-<!-- PRATO 2 -->
-
-<article class="food-card">
-
-<img
-src="sarava2.webp"
-alt="Prato servido no Saravá"
->
-
-<div class="food-content">
-
-<small>
-PRINCIPAIS
-</small>
-
-<h3>
-Especial da Casa
-</h3>
-
-<p>
-
-Sabores intensos, textura e apresentação que chamam atenção.
-
-</p>
-
-</div>
-
-</article>
-
-
-
-<!-- PRATO 3 -->
-
-<article class="food-card">
-
-<img
-src="sarava3.webp"
-alt="Prato fresco servido no Saravá"
->
-
-<div class="food-content">
-
-<small>
-FRESCOS
-</small>
-
-<h3>
-Sabores Frescos
-</h3>
-
-<p>
-
-Ingredientes, cores e combinações que traduzem a identidade da cozinha.
-
-</p>
-
-</div>
-
-</article>
-
-
-
-<!-- DRINK -->
-
-<article class="food-card">
-
-<img
-src="sarava4.webp"
-alt="Drink servido no Saravá"
->
-
-<div class="food-content">
-
-<small>
-DRINKS
-</small>
-
-<h3>
-Drink da Casa
-</h3>
-
-<p>
-
-Clima, luz e sabor numa experiência que combina perfeitamente com Itacaré.
-
-</p>
-
-</div>
-
-</article>
-
-
-</div>
-
-
-</div>
-
+<section class="paper" id="cardapio">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="section-tag" data-pt="NOSSOS SABORES" data-en="OUR FLAVORS">NOSSOS SABORES</div>
+        <h2 data-pt="Um gostinho do SARAVÁ" data-en="A taste of SARAVÁ">Um gostinho do SARAVÁ</h2>
+        <p data-pt="As imagens reais ajudam o visitante a sentir a experiência antes mesmo de chegar ao restaurante."
+           data-en="Real photos let visitors feel the experience before they even arrive.">
+          As imagens reais ajudam o visitante a sentir a experiência antes mesmo de chegar ao restaurante.
+        </p>
+      </div>
+
+      <button class="btn btn-primary" data-menu data-pt="Ver cardápio completo" data-en="View full menu">
+        Ver cardápio completo
+      </button>
+    </div>
+
+    <div class="menu-grid">
+      <article class="food-card">
+        <img src="sarava1.webp" alt="Petisco servido no Saravá">
+        <div class="food-content">
+          <small data-pt="PETISCOS" data-en="STARTERS">PETISCOS</small>
+          <h3 data-pt="Croqueta da Casa" data-en="House Croquette">Croqueta da Casa</h3>
+          <p data-pt="Apresentação artesanal e perfeita para começar a experiência."
+             data-en="An artisanal presentation, perfect to begin the experience.">
+            Apresentação artesanal e perfeita para começar a experiência.
+          </p>
+        </div>
+      </article>
+
+      <article class="food-card">
+        <img src="sarava2.webp" alt="Prato servido no Saravá">
+        <div class="food-content">
+          <small data-pt="PRINCIPAIS" data-en="MAINS">PRINCIPAIS</small>
+          <h3 data-pt="Especial da Casa" data-en="House Special">Especial da Casa</h3>
+          <p data-pt="Sabores intensos, textura e apresentação que chamam atenção."
+             data-en="Bold flavors, texture and a presentation that stands out.">
+            Sabores intensos, textura e apresentação que chamam atenção.
+          </p>
+        </div>
+      </article>
+
+      <article class="food-card">
+        <img src="sarava3.webp" alt="Prato fresco servido no Saravá">
+        <div class="food-content">
+          <small data-pt="FRESCOS" data-en="FRESH">FRESCOS</small>
+          <h3 data-pt="Sabores Frescos" data-en="Fresh Flavors">Sabores Frescos</h3>
+          <p data-pt="Ingredientes, cores e combinações que traduzem a identidade da cozinha."
+             data-en="Ingredients, colors and combinations that reflect the kitchen's identity.">
+            Ingredientes, cores e combinações que traduzem a identidade da cozinha.
+          </p>
+        </div>
+      </article>
+
+      <article class="food-card">
+        <img src="sarava4.webp" alt="Drink servido no Saravá">
+        <div class="food-content">
+          <small>DRINKS</small>
+          <h3 data-pt="Drink da Casa" data-en="House Drink">Drink da Casa</h3>
+          <p data-pt="Clima, luz e sabor numa experiência que combina perfeitamente com Itacaré."
+             data-en="Atmosphere, light and flavor in an experience that fits Itacaré perfectly.">
+            Clima, luz e sabor numa experiência que combina perfeitamente com Itacaré.
+          </p>
+        </div>
+      </article>
+    </div>
+  </div>
 </section>
 
+<section class="story" id="historia">
+  <div class="container">
+    <div class="story-box">
+      <div class="section-tag" data-pt="A ESSÊNCIA" data-en="THE ESSENCE">A ESSÊNCIA</div>
 
+      <h2 data-pt="Raízes que alimentam." data-en="Roots that nourish.">Raízes que alimentam.</h2>
 
-<!-- HISTÓRIA -->
+      <p data-pt="O SARAVÁ não precisa perder sua personalidade para estar mais presente no digital."
+         data-en="SARAVÁ does not need to lose its personality to have a stronger digital presence.">
+        O SARAVÁ não precisa perder sua personalidade para estar mais presente no digital.
+      </p>
 
-<section
-class="story"
-id="historia"
->
-
-<div class="container">
-
-
-<div class="story-box">
-
-
-<div class="section-tag">
-
-A ESSÊNCIA
-
-</div>
-
-
-<h2>
-
-Raízes que alimentam.
-
-</h2>
-
-
-<p>
-
-O SARAVÁ não precisa perder sua personalidade para estar mais presente no digital.
-
-</p>
-
-
-<p>
-
-A proposta é justamente levar para a internet a mesma sensação que o cliente encontra ao chegar:
-
-luz quente, ambiente intimista, gastronomia e a energia de Itacaré.
-
-</p>
-
-
-<button
-class="btn btn-outline"
-data-demo
->
-
-Conheça nossa história
-
-</button>
-
-
-</div>
-
-
-</div>
-
+      <p data-pt="A proposta é levar para a internet a mesma sensação que o cliente encontra ao chegar: luz quente, ambiente intimista, gastronomia e a energia de Itacaré."
+         data-en="The idea is to bring online the same feeling guests find on arrival: warm light, an intimate atmosphere, gastronomy and the energy of Itacaré.">
+        A proposta é levar para a internet a mesma sensação que o cliente encontra ao chegar: luz quente, ambiente intimista, gastronomia e a energia de Itacaré.
+      </p>
+    </div>
+  </div>
 </section>
 
+<section class="paper" id="galeria">
+  <div class="container">
+    <div class="gallery-title">
+      <div class="section-tag" data-pt="FOTOS REAIS" data-en="REAL PHOTOS">FOTOS REAIS</div>
+      <h2 data-pt="Um gostinho do SARAVÁ" data-en="A glimpse of SARAVÁ">Um gostinho do SARAVÁ</h2>
+      <p data-pt="O próprio restaurante é o protagonista." data-en="The restaurant itself is the star.">
+        O próprio restaurante é o protagonista.
+      </p>
+    </div>
 
-
-<!-- GALERIA -->
-
-<section
-class="paper"
-id="galeria"
->
-
-<div class="container">
-
-
-<div class="gallery-title">
-
-
-<div class="section-tag">
-
-FOTOS REAIS
-
-</div>
-
-
-<h2>
-
-Um gostinho do SARAVÁ
-
-</h2>
-
-
-<p>
-
-O próprio restaurante é o protagonista.
-
-</p>
-
-
-</div>
-
-
-
-<div class="gallery">
-
-
-<img
-class="main-photo"
-src="sarava.webp"
-alt="Fachada e ambiente do Saravá"
->
-
-
-<img
-src="sarava4.webp"
-alt="Drink do Saravá"
->
-
-
-<img
-src="sarava1.webp"
-alt="Petisco do Saravá"
->
-
-
-<img
-src="sarava2.webp"
-alt="Prato principal"
->
-
-
-<img
-src="sarava3.webp"
-alt="Prato do restaurante"
->
-
-
-</div>
-
-
-</div>
-
+    <div class="gallery">
+      <img class="main-photo" src="sarava.webp" alt="Fachada e ambiente do Saravá">
+      <img src="sarava4.webp" alt="Drink do Saravá">
+      <img src="sarava1.webp" alt="Petisco do Saravá">
+      <img src="sarava2.webp" alt="Prato principal">
+      <img src="sarava3.webp" alt="Prato do restaurante">
+    </div>
+  </div>
 </section>
 
-
-
-<!-- LOCALIZAÇÃO -->
-
-<section
-class="paper"
-id="localizacao"
-style="padding-top:20px"
->
-
-<div class="container location-grid">
-
-
-
-<div class="info-card">
-
-
-<h2>
-
-Informações
-
-</h2>
-
-
-<div class="info-item">
-
-<strong>
-📍 Endereço
-</strong>
-
-Rua Lodônio Almeida, 84
-
-<br>
-
-Centro • Itacaré - BA
-
-<br>
-
-45530-000
-
-</div>
-
-
-
-<div class="info-item">
-
-<strong>
-⭐ Google
-</strong>
-
-Avaliação 4,7
-
-<br>
-
-Mais de 500 avaliações
-
-</div>
-
-
-
-<div class="info-item">
-
-<strong>
-🍽️ Experiência
-</strong>
-
-Mesas externas
-
-<br>
-
-Ambiente acolhedor
-
-<br>
-
-Gastronomia com personalidade
-
-</div>
-
-
-
-<div class="info-item">
-
-<strong>
-🕒 Horário
-</strong>
-
-Consulte o horário atualizado no Google.
-
-</div>
-
-
-
-<div
-style="
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-margin-top:25px;
-"
->
-
-
-<a
-class="btn btn-primary"
-target="_blank"
-
-href="https://www.google.com/maps/search/?api=1&query=SARAV%C3%81%20Rua%20Lod%C3%B4nio%20Almeida%2084%20Itacar%C3%A9%20BA"
->
-
-Abrir no Maps
-
-</a>
-
-
-<button
-class="btn btn-outline"
-data-demo
->
-
-WhatsApp
-
-</button>
-
-
-</div>
-
-
-</div>
-
-
-
-<div class="location-photo">
-
-
-<div class="location-caption">
-
-<strong>
-
-SARAVÁ • ITACARÉ
-
-</strong>
-
-Rua Lodônio Almeida, 84 • Centro
-
-</div>
-
-
-</div>
-
-
-</div>
-
+<section class="reviews" id="avaliacoes">
+  <div class="container">
+    <div class="review-head">
+      <div class="section-tag" data-pt="REPUTAÇÃO" data-en="REPUTATION">REPUTAÇÃO</div>
+
+      <h2 data-pt="O que chama atenção nas avaliações" data-en="What guests highlight in reviews">
+        O que chama atenção nas avaliações
+      </h2>
+
+      <p data-pt="Uma presença digital também pode aproveitar a reputação que o restaurante já construiu."
+         data-en="A digital presence can also leverage the reputation the restaurant has already built.">
+        Uma presença digital também pode aproveitar a reputação que o restaurante já construiu.
+      </p>
+
+      <div class="rating-pill">⭐ 4,7 • Google</div>
+    </div>
+
+    <div class="review-grid">
+      <article class="review-card">
+        <div class="stars">★★★★★</div>
+        <h3 data-pt="Atendimento acolhedor" data-en="Warm service">Atendimento acolhedor</h3>
+        <p data-pt="Avaliações públicas destacam uma equipe atenciosa e uma experiência humana do início ao fim."
+           data-en="Public reviews highlight attentive staff and a welcoming experience from start to finish.">
+          Avaliações públicas destacam uma equipe atenciosa e uma experiência humana do início ao fim.
+        </p>
+        <small data-pt="Destaque recorrente em avaliações públicas" data-en="Recurring theme in public reviews">
+          Destaque recorrente em avaliações públicas
+        </small>
+      </article>
+
+      <article class="review-card">
+        <div class="stars">★★★★★</div>
+        <h3 data-pt="Comida criativa" data-en="Creative food">Comida criativa</h3>
+        <p data-pt="Pratos bem apresentados, frescos e cheios de sabor aparecem entre os elogios mais comuns."
+           data-en="Well-presented, fresh and flavorful dishes are among the most common compliments.">
+          Pratos bem apresentados, frescos e cheios de sabor aparecem entre os elogios mais comuns.
+        </p>
+        <small data-pt="Destaque recorrente em avaliações públicas" data-en="Recurring theme in public reviews">
+          Destaque recorrente em avaliações públicas
+        </small>
+      </article>
+
+      <article class="review-card">
+        <div class="stars">★★★★★</div>
+        <h3 data-pt="Ambiente que marca" data-en="Memorable atmosphere">Ambiente que marca</h3>
+        <p data-pt="O clima agradável e aconchegante aparece como parte importante da experiência do SARAVÁ."
+           data-en="The pleasant, cozy atmosphere is often described as an important part of the SARAVÁ experience.">
+          O clima agradável e aconchegante aparece como parte importante da experiência do SARAVÁ.
+        </p>
+        <small data-pt="Destaque recorrente em avaliações públicas" data-en="Recurring theme in public reviews">
+          Destaque recorrente em avaliações públicas
+        </small>
+      </article>
+    </div>
+  </div>
 </section>
 
+<section class="paper">
+  <div class="container instagram-block">
+    <div class="instagram-copy">
+      <div class="section-tag">INSTAGRAM</div>
+
+      <h2 data-pt="A experiência continua nas redes." data-en="The experience continues on social media.">
+        A experiência continua nas redes.
+      </h2>
+
+      <p data-pt="O site pode levar o visitante direto para o Instagram oficial e manter a identidade da marca conectada em todos os canais."
+         data-en="The website can take visitors directly to the official Instagram and keep the brand identity connected across every channel.">
+        O site pode levar o visitante direto para o Instagram oficial e manter a identidade da marca conectada em todos os canais.
+      </p>
+
+      <a class="btn btn-primary" href="https://www.instagram.com/sarava_itacare/" target="_blank">
+        📷 @sarava_itacare
+      </a>
+    </div>
+
+    <div class="instagram-phone">
+      <img src="sarava4.webp" alt="Experiência visual Saravá">
+    </div>
+  </div>
+</section>
+
+<section class="qr-section">
+  <div class="container qr-grid">
+    <div class="qr-copy">
+      <div class="section-tag" data-pt="CARDÁPIO NA MESA" data-en="MENU AT THE TABLE">CARDÁPIO NA MESA</div>
+
+      <h2 data-pt="Aponte a câmera. O cardápio abre na hora." data-en="Point the camera. The menu opens instantly.">
+        Aponte a câmera. O cardápio abre na hora.
+      </h2>
+
+      <p data-pt="No projeto final, um QR Code discreto pode ficar nas mesas. O cliente acessa o cardápio oficial sem instalar aplicativo e sem substituir o cardápio físico."
+         data-en="In the final project, a discreet QR code can be placed on the tables. Guests can access the official menu without installing an app or replacing the printed menu.">
+        No projeto final, um QR Code discreto pode ficar nas mesas. O cliente acessa o cardápio oficial sem instalar aplicativo e sem substituir o cardápio físico.
+      </p>
+    </div>
+
+    <div class="qr-card">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZoAAAGaAQAAAAAefbjOAAAC/0lEQVR4nO2bzY3bMBCF3wsJ+EgBW4BLoTpbpKTtQCzFBQQgjwYkvBxIamWfsggib6ThQZZpfTAFj+fncUThyyP9+DoDGGSQQQYZZJBBx4TYhgdQPDgWDwALOWIhUPoF40uWZ9D+UJQkZQBpADRhIcdyEdLgxBFOkqRHaL/lGbQf5NtrGYD4ATDmgQLcDOBOpdHPQgHY5vZdnkGvh9J1BtL1TiRehJgBjv/kmwz6lpB/nogfHogZYswDgXCnUF61PINeBgVJUz114oiFmoKkqVzEEYCk+Rnab3kG7Q0lkuSwTpeLOBYPvmcAwFJLjVctz6D9ID6p2ASAPrfUmPIsdJuKfXyIY2l6hCY4kcNCcnA9syyrWvGS5Rm0IwS1MVdRos5NcALCDMQMSLnPRUmavvk9GfQ3ULWIrlA9CFFREmJ266Gbj1nEkaFmEQjt0AwkN39QL5lCPzOLODz0YBFrXPici5pR40cNImYRR4f63x7oeURYjSEDzRjgNpeYRRwa6hbRFSpN1RU0O+ihw1nUOAu0UbEZtfgqYANNhVAafjVRIo2203UGaI0aqxfITbGufkN5rUPXmsR8xBmgcKckiewNERx7x4x089BPU6hOAW0Uqu4eWoXR5Ins1HKLrlaYjzg0tFpECwlVikBPL7tS2TMIixqHhzZ6RK01lNG06yk0R9H1CJmPOAHUw0QGgDBvti8+PUMPHZZZngHaJA4tYGzGmjgALYiYjzg89JBK6mH7Qj2P6B/Y3ueZoHIREtlK0BEP/REkiai79VCdBuradTOGaiDxRpLXtXGimB5xBqj+yv3P72YlOiFd71QTshcPlLcZ9rzGOaDnjpk+7Xr9AWCz3WV5xOGhbfW5tko1eSI81h/Bao1TQukqaSoefL95AOHO1jNRPDi+enkG7Q7F22dd4Xo+WcjPFor/754M+sLo9UMQgAIoDQBQBgiY61uhvM2MN2+Z5QmgjS6F6hTCKk4FqW1zVP3K8ogzQM/PdP3JsGe6DDLIIIMMMsggAPgNJu2a9GJebPgAAAAASUVORK5CYII=" alt="QR Code do protótipo">
+      <strong data-pt="Teste agora" data-en="Try it now">Teste agora</strong>
+      <small data-pt="Abre este protótipo" data-en="Opens this prototype">Abre este protótipo</small>
+    </div>
+  </div>
+</section>
+
+<section class="final-line">
+  <p data-pt="O SARAVÁ continua sendo <strong>SARAVÁ</strong>. Só fica mais fácil encontrá-lo, conhecê-lo e desejá-lo antes mesmo de chegar."
+     data-en="SARAVÁ remains <strong>SARAVÁ</strong>. It simply becomes easier to find, discover and desire before guests even arrive.">
+    O SARAVÁ continua sendo <strong>SARAVÁ</strong>. Só fica mais fácil encontrá-lo, conhecê-lo e desejá-lo antes mesmo de chegar.
+  </p>
+</section>
+
+<section class="paper" id="localizacao" style="padding-top:70px">
+  <div class="container location-grid">
+    <div class="info-card">
+      <h2 data-pt="Informações" data-en="Information">Informações</h2>
+
+      <div class="info-item">
+        <strong data-pt="📍 Endereço" data-en="📍 Address">📍 Endereço</strong>
+        Rua Lodônio Almeida, 84<br>Centro • Itacaré - BA<br>45530-000
+      </div>
+
+      <div class="info-item">
+        <strong>⭐ Google</strong>
+        <span data-pt="Avaliação 4,7 • mais de 500 avaliações" data-en="4.7 rating • 500+ reviews">
+          Avaliação 4,7 • mais de 500 avaliações
+        </span>
+      </div>
+
+      <div class="info-item">
+        <strong data-pt="🍽️ Experiência" data-en="🍽️ Experience">🍽️ Experiência</strong>
+        <span data-pt="Mesas externas • ambiente acolhedor • gastronomia com personalidade"
+              data-en="Outdoor seating • welcoming atmosphere • food with personality">
+          Mesas externas • ambiente acolhedor • gastronomia com personalidade
+        </span>
+      </div>
+
+      <div class="info-item">
+        <strong data-pt="🕒 Horário" data-en="🕒 Hours">🕒 Horário</strong>
+        <span data-pt="Consulte o horário atualizado no Google." data-en="Check current opening hours on Google.">
+          Consulte o horário atualizado no Google.
+        </span>
+      </div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:25px">
+        <a class="btn btn-primary" target="_blank"
+           href="https://www.google.com/maps/search/?api=1&query=SARAV%C3%81%20Rua%20Lod%C3%B4nio%20Almeida%2084%20Itacar%C3%A9%20BA"
+           data-pt="Abrir no Maps" data-en="Open Maps">
+          Abrir no Maps
+        </a>
+      </div>
+    </div>
+
+    <div class="location-photo">
+      <div class="location-caption">
+        <strong>SARAVÁ • ITACARÉ</strong>
+        Rua Lodônio Almeida, 84 • Centro
+      </div>
+    </div>
+  </div>
+</section>
 
 </main>
 
-
-
-<!-- FOOTER -->
-
 <footer>
+  <div class="container footer">
+    <div>
+      <div class="footer-logo">SARAVÁ</div>
+      <small>Comida • arte • pessoas • Itacaré</small>
+    </div>
 
-<div class="container footer">
+    <div class="social-links">
+      <a class="social-link" href="https://www.instagram.com/sarava_itacare/" target="_blank">Instagram</a>
+      <a class="social-link" href="https://www.google.com/maps/search/?api=1&query=SARAV%C3%81%20Itacar%C3%A9%20BA" target="_blank">Google Maps</a>
+    </div>
 
-
-<div>
-
-<div class="footer-logo">
-
-SARAVÁ
-
-</div>
-
-<small>
-
-Comida • arte • pessoas • Itacaré
-
-</small>
-
-</div>
-
-
-<div>
-
-<small>
-
-Protótipo conceitual desenvolvido pela
-
-<strong>
-Nova Byte
-</strong>
-
-</small>
-
-</div>
-
-
-</div>
-
+    <div>
+      <small data-pt="Protótipo conceitual desenvolvido pela Nova Byte."
+             data-en="Concept prototype developed by Nova Byte.">
+        Protótipo conceitual desenvolvido pela Nova Byte.
+      </small>
+    </div>
+  </div>
 </footer>
 
+<button class="whatsapp" data-demo>💬 WhatsApp</button>
 
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h2 data-pt="Cardápio demonstrativo" data-en="Demo menu">Cardápio demonstrativo</h2>
+      <button class="close" id="closeModal">✕</button>
+    </div>
 
-<!-- WHATSAPP -->
+    <div class="menu-tabs">
+      <button class="menu-tab active" data-tab="entradas" data-pt="Entradas" data-en="Starters">Entradas</button>
+      <button class="menu-tab" data-tab="principais" data-pt="Principais" data-en="Mains">Principais</button>
+      <button class="menu-tab" data-tab="vegetarianos" data-pt="Vegetarianos" data-en="Vegetarian">Vegetarianos</button>
+      <button class="menu-tab" data-tab="drinks">Drinks</button>
+      <button class="menu-tab" data-tab="sobremesas" data-pt="Sobremesas" data-en="Desserts">Sobremesas</button>
+    </div>
 
-<button
-class="whatsapp"
-data-demo
->
+    <div class="menu-modal-content">
+      <div class="menu-category active" data-category="entradas">
+        <h3 data-pt="PARA COMEÇAR" data-en="TO START">PARA COMEÇAR</h3>
+        <div class="menu-item">
+          <div><strong>Croqueta da Casa</strong><p data-pt="Petisco artesanal para compartilhar." data-en="Artisanal starter to share.">Petisco artesanal para compartilhar.</p></div>
+          <strong>R$ --</strong>
+        </div>
+        <div class="menu-item">
+          <div><strong data-pt="Entrada especial" data-en="Special starter">Entrada especial</strong><p data-pt="Sugestão demonstrativa da casa." data-en="Demo house suggestion.">Sugestão demonstrativa da casa.</p></div>
+          <strong>R$ --</strong>
+        </div>
+      </div>
 
-💬 Falar no WhatsApp
+      <div class="menu-category" data-category="principais">
+        <h3 data-pt="PRINCIPAIS" data-en="MAINS">PRINCIPAIS</h3>
+        <div class="menu-item">
+          <div><strong data-pt="Especial da Casa" data-en="House Special">Especial da Casa</strong><p data-pt="Prato autoral com apresentação marcante." data-en="Signature dish with a striking presentation.">Prato autoral com apresentação marcante.</p></div>
+          <strong>R$ --</strong>
+        </div>
+        <div class="menu-item">
+          <div><strong data-pt="Sugestão do Chef" data-en="Chef's Suggestion">Sugestão do Chef</strong><p data-pt="Espaço para destacar o carro-chefe oficial." data-en="Space to highlight the official signature dish.">Espaço para destacar o carro-chefe oficial.</p></div>
+          <strong>R$ --</strong>
+        </div>
+      </div>
 
-</button>
+      <div class="menu-category" data-category="vegetarianos">
+        <h3 data-pt="VEGETARIANOS" data-en="VEGETARIAN">VEGETARIANOS</h3>
+        <div class="menu-item">
+          <div><strong data-pt="Opção fresca" data-en="Fresh option">Opção fresca</strong><p data-pt="Ingredientes frescos e combinação equilibrada." data-en="Fresh ingredients and a balanced combination.">Ingredientes frescos e combinação equilibrada.</p></div>
+          <strong>R$ --</strong>
+        </div>
+      </div>
 
+      <div class="menu-category" data-category="drinks">
+        <h3>DRINKS</h3>
+        <div class="menu-item">
+          <div><strong data-pt="Drink da Casa" data-en="House Drink">Drink da Casa</strong><p data-pt="Coquetel autoral." data-en="Signature cocktail.">Coquetel autoral.</p></div>
+          <strong>R$ --</strong>
+        </div>
+      </div>
 
+      <div class="menu-category" data-category="sobremesas">
+        <h3 data-pt="SOBREMESAS" data-en="DESSERTS">SOBREMESAS</h3>
+        <div class="menu-item">
+          <div><strong data-pt="Sobremesa da Casa" data-en="House Dessert">Sobremesa da Casa</strong><p data-pt="Espaço para destacar uma sobremesa assinatura." data-en="Space to highlight a signature dessert.">Espaço para destacar uma sobremesa assinatura.</p></div>
+          <strong>R$ --</strong>
+        </div>
+      </div>
+    </div>
 
-<!-- MODAL CARDÁPIO -->
-
-<div
-class="modal"
-id="modal"
->
-
-
-<div class="modal-box">
-
-
-<div class="modal-header">
-
-
-<h2>
-
-Cardápio demonstrativo
-
-</h2>
-
-
-<button
-class="close"
-id="closeModal"
->
-
-✕
-
-</button>
-
-
+    <div class="prototype-warning"
+         data-pt="⚠️ Este é apenas um protótipo. As fotos são reais do restaurante, mas os nomes, descrições e preços do cardápio são demonstrativos."
+         data-en="⚠️ This is only a prototype. The restaurant photos are real, but menu names, descriptions and prices are for demonstration only.">
+      ⚠️ Este é apenas um protótipo. As fotos são reais do restaurante, mas os nomes, descrições e preços do cardápio são demonstrativos.
+    </div>
+  </div>
 </div>
 
-
-
-<div class="menu-modal-content">
-
-
-
-<div class="menu-category">
-
-
-<h3>
-
-PARA COMEÇAR
-
-</h3>
-
-
-<div class="menu-item">
-
-<div>
-
-<strong>
-
-Croqueta da Casa
-
-</strong>
-
-<p>
-
-Petisco artesanal para compartilhar.
-
-</p>
-
+<div class="toast" id="toast"
+     data-pt="No projeto oficial, este botão abrirá o canal verdadeiro do SARAVÁ."
+     data-en="In the official project, this button will open SARAVÁ's real contact channel.">
+  No projeto oficial, este botão abrirá o canal verdadeiro do SARAVÁ.
 </div>
-
-<strong>
-
-R$ --
-
-</strong>
-
-</div>
-
-
-
-<div class="menu-item">
-
-<div>
-
-<strong>
-
-Entrada especial
-
-</strong>
-
-<p>
-
-Sugestão demonstrativa da casa.
-
-</p>
-
-</div>
-
-<strong>
-
-R$ --
-
-</strong>
-
-</div>
-
-
-</div>
-
-
-
-<div class="menu-category">
-
-
-<h3>
-
-PRINCIPAIS
-
-</h3>
-
-
-<div class="menu-item">
-
-<div>
-
-<strong>
-
-Especial da Casa
-
-</strong>
-
-<p>
-
-Prato autoral com apresentação marcante.
-
-</p>
-
-</div>
-
-<strong>
-
-R$ --
-
-</strong>
-
-</div>
-
-
-
-<div class="menu-item">
-
-<div>
-
-<strong>
-
-Opção fresca
-
-</strong>
-
-<p>
-
-Ingredientes frescos e combinação equilibrada.
-
-</p>
-
-</div>
-
-<strong>
-
-R$ --
-
-</strong>
-
-</div>
-
-
-
-<div class="menu-item">
-
-<div>
-
-<strong>
-
-Sugestão do Chef
-
-</strong>
-
-<p>
-
-Espaço para destacar o carro-chefe do restaurante.
-
-</p>
-
-</div>
-
-<strong>
-
-R$ --
-
-</strong>
-
-</div>
-
-
-</div>
-
-
-
-<div class="menu-category">
-
-
-<h3>
-
-DRINKS
-
-</h3>
-
-
-<div class="menu-item">
-
-<div>
-
-<strong>
-
-Drink da Casa
-
-</strong>
-
-<p>
-
-Coquetel autoral.
-
-</p>
-
-</div>
-
-<strong>
-
-R$ --
-
-</strong>
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-
-<div class="prototype-warning">
-
-⚠️ Este é apenas um protótipo.
-
-As fotos são reais do restaurante, mas os nomes, descrições e preços do cardápio são demonstrativos.
-
-No projeto oficial, tudo seria atualizado com as informações fornecidas pelo SARAVÁ.
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-
-<!-- MENSAGEM -->
-
-<div
-class="toast"
-id="toast"
->
-
-No projeto oficial, este botão abrirá o canal verdadeiro do SARAVÁ.
-
-</div>
-
-
 
 <script>
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+const modal = document.getElementById("modal");
+const closeModal = document.getElementById("closeModal");
+const toast = document.getElementById("toast");
+const langToggle = document.getElementById("langToggle");
+const ptLabel = document.getElementById("ptLabel");
+const enLabel = document.getElementById("enLabel");
 
+let currentLang = "pt";
 
-/* MENU MOBILE */
+menuBtn.addEventListener("click", () => navLinks.classList.toggle("open"));
 
-const menuBtn =
-document.getElementById("menuBtn");
+document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => navLinks.classList.remove("open"));
+});
 
-const navLinks =
-document.getElementById("navLinks");
-
-
-menuBtn.addEventListener(
-"click",
-()=>{
-
-navLinks.classList.toggle(
-"open"
-);
-
-}
-);
-
-
-document
-.querySelectorAll(
-".nav-links a"
-)
-.forEach(
-link=>{
-
-link.addEventListener(
-"click",
-()=>{
-
-navLinks.classList.remove(
-"open"
-);
-
-}
-);
-
-}
-);
-
-
-
-/* MODAL */
-
-const modal =
-document.getElementById(
-"modal"
-);
-
-const closeModal =
-document.getElementById(
-"closeModal"
-);
-
-
-document
-.querySelectorAll(
-"[data-menu]"
-)
-.forEach(
-button=>{
-
-button.addEventListener(
-"click",
-()=>{
-
-modal.classList.add(
-"open"
-);
-
-document.body.style.overflow =
-"hidden";
-
-}
-);
-
-}
-);
-
+document.querySelectorAll("[data-menu]").forEach(button => {
+  button.addEventListener("click", () => {
+    modal.classList.add("open");
+    document.body.style.overflow = "hidden";
+  });
+});
 
 function fecharModal(){
-
-modal.classList.remove(
-"open"
-);
-
-document.body.style.overflow =
-"";
-
+  modal.classList.remove("open");
+  document.body.style.overflow = "";
 }
 
+closeModal.addEventListener("click", fecharModal);
 
-closeModal.addEventListener(
-"click",
-fecharModal
-);
+modal.addEventListener("click", event => {
+  if(event.target === modal) fecharModal();
+});
 
+document.addEventListener("keydown", event => {
+  if(event.key === "Escape") fecharModal();
+});
 
-modal.addEventListener(
-"click",
-event=>{
+document.querySelectorAll(".menu-tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".menu-tab").forEach(t => t.classList.remove("active"));
+    document.querySelectorAll(".menu-category").forEach(c => c.classList.remove("active"));
 
-if(
-event.target === modal
-){
+    tab.classList.add("active");
 
-fecharModal();
+    const category = document.querySelector('[data-category="' + tab.dataset.tab + '"]');
 
-}
-
-}
-);
-
-
-document.addEventListener(
-"keydown",
-event=>{
-
-if(
-event.key === "Escape"
-){
-
-fecharModal();
-
-}
-
-}
-);
-
-
-
-/* BOTÕES DEMONSTRATIVOS */
-
-const toast =
-document.getElementById(
-"toast"
-);
+    if(category) category.classList.add("active");
+  });
+});
 
 let timer;
 
-
 function mostrarMensagem(){
+  toast.classList.add("show");
+  clearTimeout(timer);
 
-toast.classList.add(
-"show"
-);
-
-clearTimeout(
-timer
-);
-
-timer =
-setTimeout(
-()=>{
-
-toast.classList.remove(
-"show"
-);
-
-},
-2800
-);
-
+  timer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2800);
 }
 
+document.querySelectorAll("[data-demo]").forEach(button => {
+  button.addEventListener("click", mostrarMensagem);
+});
 
-document
-.querySelectorAll(
-"[data-demo]"
-)
-.forEach(
-button=>{
+function applyLanguage(lang){
+  currentLang = lang;
 
-button.addEventListener(
-"click",
-mostrarMensagem
-);
+  document.documentElement.lang = lang === "pt" ? "pt-BR" : "en";
 
+  document.querySelectorAll("[data-pt][data-en]").forEach(el => {
+    const value = el.getAttribute(lang === "pt" ? "data-pt" : "data-en");
+
+    if(value.includes("<br>") || value.includes("<strong>")){
+      el.innerHTML = value;
+    }else{
+      el.textContent = value;
+    }
+  });
+
+  ptLabel.classList.toggle("active", lang === "pt");
+  enLabel.classList.toggle("active", lang === "en");
 }
-);
 
-
+langToggle.addEventListener("click", () => {
+  applyLanguage(currentLang === "pt" ? "en" : "pt");
+});
 </script>
 
-
 </body>
-
 </html>
